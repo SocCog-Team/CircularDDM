@@ -27,8 +27,13 @@ for i = 1:nsim
     %[x,y] = pol2cart(alpha,d); %signal dots, convert polar to cartesian
     %[x_r,y_r] = pol2cart(alpha_r,d); %random dots, convert polar to cartesian
 
-    sum_x = x_s*nsig + sum(x_r); % x-component of sum of vectors
-    sum_y = y_s*nsig + sum(y_r); % y-component of sum of vectors
+%     % vector sum
+%     sum_x = x_s*nsig + sum(x_r); % x-component of sum of vectors
+%     sum_y = y_s*nsig + sum(y_r); % y-component of sum of vectors
+
+    % vector mean
+    sum_x = (x_s + x_r)/ndots; % x-component of sum of vectors
+    sum_y = (y_s + y_r)/ndots; % y-component of sum of vectors
 
     % convert to polar coordinates (with positive radial distance)
     S_rpol(i) = sqrt(sum_x^2 + sum_y^2); %radial
