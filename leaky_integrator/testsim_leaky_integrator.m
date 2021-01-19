@@ -68,6 +68,8 @@ s  = zeros(size(t));
 s(t<=1) =1 ;   
 s(t>1 & t<2) =-0.5;  
 
+s = s + 0.0*randn(size(s));
+
 
  
 y = leakyIntegrator(s,k,t);
