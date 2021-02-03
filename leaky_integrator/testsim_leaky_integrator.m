@@ -54,13 +54,13 @@ function testsim_leaky_integrator
 % changing the value of 'y' on each step according to the equation above:
 
 % Generate a time-vector
-dt = .01;  %step size (seconds)
-maxt = 10;  %ending time (seconds)
+dt = .01;  % step size (seconds)
+maxt = 10;  % ending time (seconds)
 t = 0:dt:(maxt-dt);
-nt = length(t);  %length of t
-lambda = 5;  % Lambda represents the memory leak rate (the inverse of the integration time constant k). Large integration time constant k (small lambda) - slow leak
+nt = length(t);  % length of t
+lambda = 2;  % Lambda represents the memory leak rate (the inverse of the integration time constant k). Large integration time constant k (small lambda) - slow leak
 k = 1/lambda;
-noise_amp = 0.5;
+noise_amp = 0.1;
 
 
 
@@ -71,10 +71,13 @@ s(t>1 & t<2) =-0.5;
 
 s_n = s + noise_amp*randn(size(s));
 
-
  
 y = leakyIntegrator(s_n,k,t);
+
+% scale integrator output to match the stimulus
+y = y*lambda;
+
 figure
-li_plotResp(t,s,s_n,y);
+li_plotResp(t,s,s_n,y,lambda);
 
 
