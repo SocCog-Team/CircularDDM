@@ -12,8 +12,9 @@ set(gca,'XLim',[min(t)-.05,max(t)+.05]);
 legend({'stim+noise','veridical stim'});
 
 subplot(2,1,2)
-plot(t,y,'-','LineWidth',2,'Color',col{3});
+plot(t,y,'-','LineWidth',2,'Color',col{3}); hold on
+plot(t,s,'-','LineWidth',2,'Color',col{2});
 xlabel('Time (s)')
-title(sprintf('Integrator output (lambda = %.1f s)',lambda));
+title(sprintf('Integrator output (lambda = %.1f)',lambda));
 set(gca,'XLim',[min(t)-.05,max(t)+.05]);
 
