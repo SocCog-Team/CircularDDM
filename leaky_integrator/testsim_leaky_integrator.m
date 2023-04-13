@@ -55,19 +55,20 @@ function testsim_leaky_integrator
 
 % Generate a time-vector
 dt = .01;  % step size (seconds)
-maxt = 10;  % ending time (seconds)
+maxt = 20;  % ending time (seconds)
 t = 0:dt:(maxt-dt);
 nt = length(t);  % length of t
 lambda = 2;  % Lambda represents the memory leak rate (the inverse of the integration time constant k). Large integration time constant k (small lambda) - slow leak
 k = 1/lambda;
-noise_amp = 0.1;
+noise_amp = 0.0;
 
 
 
 % Define 's' 
 s  = zeros(size(t));
-s(t<=1) =1 ;   
-s(t>1 & t<2) =-0.5;  
+
+s(t>2 & t <=10) =1 ;   
+s(t>10 & t<20) =-0.5;  
 
 s_n = s + noise_amp*randn(size(s));
 
