@@ -60,7 +60,8 @@ t = 0:dt:(maxt-dt);
 nt = length(t);  % length of t
 lambda = 2;  % Lambda represents the memory leak rate (the inverse of the integration time constant k). Large integration time constant k (small lambda) - slow leak
 k = 1/lambda;
-noise_amp = 0.0;
+noise_amp = 0.2;
+delay = 0.5; % seconds
 
 
 
@@ -73,7 +74,7 @@ s(t>10 & t<20) =-0.5;
 s_n = s + noise_amp*randn(size(s));
 
  
-y = leakyIntegrator(s_n,k,t);
+y = leakyIntegrator(s_n,k,t,delay);
 
 % scale integrator output to match the stimulus
 y = y*lambda;
